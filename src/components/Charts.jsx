@@ -41,12 +41,20 @@ const Charts = ({ globalChart, data: { confirmed, deaths }, country }) => {
   const barChart = confirmed ? (
     <Bar
       data={{
-        labels: ["Infected", "Deaths"],
+        labels: ["Infected", "Recovered", "Deaths"],
         datasets: [
           {
             label: "People",
-            backgroundColor: ["rgba(0, 0, 255, 0.5)", "rgba(255, 0, 0, 0.5)"],
-            data: [confirmed.value, deaths.value],
+            backgroundColor: [
+              "rgba(0, 0, 255, 0.5)",
+              "rgba(0, 255, 0, 0.5)",
+              "rgba(255, 0, 0, 0.5)",
+            ],
+            data: [
+              confirmed.value,
+              confirmed.value - deaths.value,
+              deaths.value,
+            ],
           },
         ],
       }}

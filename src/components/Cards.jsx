@@ -2,7 +2,7 @@ import logo from "../assets/logo.png";
 import CountUp from "react-countup";
 
 const Cards = ({ data }) => {
-  const { confirmed, deaths, recovered, lastUpdate } = data;
+  const { confirmed, deaths, lastUpdate } = data;
   return (
     <div className="grid place-items-center gap-4">
       <img src={logo} alt="logo" className="object-cover" />
@@ -30,7 +30,7 @@ const Cards = ({ data }) => {
             {
               <CountUp
                 start={0}
-                end={recovered?.value}
+                end={confirmed?.value - deaths?.value}
                 duration={2.5}
                 decimal=","
               />
