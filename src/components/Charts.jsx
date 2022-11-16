@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
+import Spinner from "./Spinner";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,7 +26,15 @@ ChartJS.register(
   Legend
 );
 
-const Charts = ({ globalChart, data: { confirmed, deaths }, country }) => {
+const Charts = () => {
+  // Context
+  const {
+    globalChart,
+    data: { confirmed, deaths },
+    value: country,
+    loading,
+  } = useContext(GlobalContext);
+
   /////////////////////////////
   // Bar Chart
   const options = {
@@ -86,10 +98,12 @@ const Charts = ({ globalChart, data: { confirmed, deaths }, country }) => {
     />
   ) : null;
 
-  return (
-    <div className="w-full flex justify-center pb-14 md:w-[85%]">
+  return globalChart.length ? (
+    <div className="w-full flex justify-center pb-22 md:w-[85%]">
       {country ? barChart : lineChart}
     </div>
+  ) : (
+    <Spinner />
   );
 };
 

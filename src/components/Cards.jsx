@@ -1,7 +1,11 @@
 import logo from "../assets/logo.png";
 import CountUp from "react-countup";
+import { useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
 
-const Cards = ({ data }) => {
+const Cards = () => {
+  const { data } = useContext(GlobalContext);
+
   const { confirmed, deaths, lastUpdate } = data;
   return (
     <div className="grid place-items-center gap-4">
